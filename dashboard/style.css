@@ -1,0 +1,126 @@
+body{
+    background-color: black;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.neo-core{
+    width: 250px;
+    height: 250px;
+    border: 2px solid cyan;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 40px cyan;
+    position: relative;
+
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.neo-core::before{
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    /*border: 2px dashed cyan;*/
+    border-radius: 50%;
+    top: -25px;
+    left: -25px;
+    background: conic-gradient(cyan 0deg 60deg, transparent 60deg 90deg,
+    cyan 90deg 150deg, transparent 150deg 180deg, cyan 180deg 240deg,
+    transparent 240deg 270deg, cyan 270deg 330deg, transparent 330deg 360deg);
+    mask: radial-gradient(transparent 70%, black 71%);
+    box-sizing: border-box;
+    animation: spin_reverse 12s linear infinite;
+}
+
+.hud-ring{
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 2px solid cyan;
+    border-radius: 50%;
+    top: -50px;
+    left: -50px;
+    box-sizing: border-box;
+}
+
+.hud-ticks{
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    top: -40px;
+    left: -40px;
+    background: repeating-conic-gradient(cyan 0deg 2deg, transparent 2deg 8deg);
+    /*mask: radial-gradient(transparent 0%, transparent 85%, black 85%, black 92%, transparent 92%, transparent 100%);*/
+    mask: radial-gradient(transparent 66%, black 67%);
+    animation: spin 10s linear infinite;
+}
+
+.ai-dashboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.time-panel{
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+}
+
+.weather-panel{
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+}
+
+.task-panel{
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+    align-self: end;
+}
+
+.system-panel{
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: end;
+    align-self: end;
+}
+
+@keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin_reverse{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
