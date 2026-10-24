@@ -5,6 +5,8 @@ const neoStatus = document.getElementById("neo-status");
 const batteryStatus = document.getElementById("battery-status");
 const cpuStatus = document.getElementById("cpu-status");
 const ramStatus = document.getElementById("ram-status");
+const cpuFill = document.getElementById("cpu-fill");
+const ramFill = document.getElementById("ram-fill");
 
 function setNeoStatus(status){
     neoStatus.textContent = "NEO: " + status;
@@ -73,9 +75,11 @@ function updateCpuUsage(){
         })
         .then(function(data){
             cpuStatus.textContent = "CPU: " + data.cpu + "%";
+            cpuFill.style.width = data.cpu + "%";
         })
         .catch(function(error){
             cpuStatus.textContent = "CPU: Unavailable";
+            cpuFill.style.width = 0 + "%";
         })
 }
 
@@ -89,9 +93,11 @@ function updateRamUsage(){
         })
         .then(function(data){
             ramStatus.textContent = "RAM: " + data.ram + "%";
+            ramFill.style.width = data.ram + "%";
         })
         .catch(function(error){
             ramStatus.textContent = "RAM: Unavailable";
+            ramFill.style.width = 0 + "%";
             console.error(error);
         })
 }
