@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 body{
     background-color: black;
     color: white;
@@ -11,8 +13,9 @@ body{
 }
 
 .neo-core{
-    width: 250px;
-    height: 250px;
+    --core-size: clamp(180px, 60vw, 250px);
+    width: var(--core-size);
+    height: var(--core-size);
     border: 2px solid cyan;
     border-radius: 50%;
 
@@ -32,8 +35,8 @@ body{
 .neo-core::before{
     content: "";
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: calc(var(--core-size) + 50px);
+    height: calc(var(--core-size) + 50px);
     /*border: 2px dashed cyan;*/
     border-radius: 50%;
     top: -25px;
@@ -48,8 +51,8 @@ body{
 
 .hud-ring{
     position: absolute;
-    width: 350px;
-    height: 350px;
+    width: calc(var(--core-size) + 100px);
+    height: calc(var(--core-size) + 100px);
     border: 2px solid cyan;
     border-radius: 50%;
     top: -50px;
@@ -59,8 +62,8 @@ body{
 
 .hud-ticks{
     position: absolute;
-    width: 330px;
-    height: 330px;
+    width: calc(var(--core-size) + 80px);
+    height: calc(var(--core-size) + 80px);
     border-radius: 50%;
     top: -40px;
     left: -40px;
@@ -70,13 +73,14 @@ body{
     animation: spin 10s linear infinite;
 }
 
-.ai-dashboard{
+.ai-dashboard {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: 1fr 1fr 1fr;
-
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .time-panel{
@@ -96,7 +100,7 @@ body{
 .task-panel{
     grid-column: 1;
     grid-row: 3;
-    justify-self: start;
+    justify-self: stretch;
     align-self: end;
 }
 
@@ -123,6 +127,15 @@ body{
     transition: width 0.5s ease;
 }
 
+.forecast-card{
+    background-color: #111D29;
+    color: cyan;
+    border: 1px solid cyan;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
 @keyframes spin{
     from{
         transform: rotate(0deg);
@@ -138,5 +151,50 @@ body{
     }
     to{
         transform: rotate(-360deg);
+    }
+}
+
+@media (max-width: 768px){
+    .ai-dashboard{
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-auto-rows: auto;
+        gap: 30px;
+    }
+    .neo-core{
+        grid-column: 1;
+        grid-row: 3;
+        margin-block: 30px;
+    }
+    .weather-panel{
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: center;
+    }
+    .task-panel{
+        grid-column: 1;
+        grid-row: 4;
+    }
+    .system-panel{
+        grid-column: 1;
+        grid-row: 5;
+        justify-self: center;
+    }
+    .time-panel{
+        justify-self: center;
+        text-align: center;
+    }
+    #clock{
+        font-size: 40px;
+        font-family: Orbitron, sans-serif;
+        font-weight: bold;
+        color: white;
+        margin: 0;
+    }
+    #date{
+        font-size: 16px;
+        color: cyan;
+        font-weight: 500;
+        margin: 0;
     }
 }

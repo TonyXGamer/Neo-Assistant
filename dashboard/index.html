@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neo Assistant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="ai-dashboard">
         <div class="time-panel">
-            <h2>Time</h2>
             <p id="clock">8:00pm</p>
+            <p id="date">Friday, November 6, 2026</p>
         </div>
         <div class="weather-panel">
-            <h2>Weather</h2>
-            <p>72°F</p>
+            <p id="weather-temp">Temperature: Loading...</p>
+            <p id="weather-condition">Conditions: Loading...</p>
+            <div id="forecast-container"></div>
         </div>
         <div class="neo-core">
             <div class="hud-ticks"></div>
